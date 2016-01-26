@@ -29,6 +29,8 @@ namespace utf = boost::unit_test;
 
 #define EXPR_TYPE( expr ) ( assertion::seed() ->* expr )
 
+
+#if !defined(BOOST_TEST_FWD_ITERABLE_CXX03)
 // some broken compilers do not implement properly decltype on expressions
 // partial implementation of is_forward_iterable when decltype not available
 struct not_fwd_iterable_1 {
@@ -132,6 +134,8 @@ BOOST_AUTO_TEST_CASE( test_forward_iterable_concept )
     BOOST_CHECK_MESSAGE(!utf::is_forward_iterable< type >::value, "is_forward_iterable failed");
   }
 }
+
+#endif
 
 BOOST_AUTO_TEST_CASE( test_basic_value_expression_construction )
 {
