@@ -28,6 +28,9 @@
 #include <boost/bind.hpp>
 #include <boost/noncopyable.hpp>
 
+#include <boost/optional/optional.hpp>
+#include <boost/optional/optional_io.hpp>
+
 // STL
 #include <iostream>
 #include <iomanip>
@@ -898,5 +901,47 @@ BOOST_AUTO_TEST_CASE( test_rvalue_erasure )
 }
 
 #endif
+
+// issue 12001
+
+class my_class {
+private:
+  boost::optional<int> num;
+
+public:
+  my_class(const boost::optional<int> &arg_num) : num ( arg_num ) {}
+
+  const boost::optional<int> & get_num() const {
+    return num;
+  }
+
+  const my_class & set_num(const boost::optional<int> &arg_num) {
+    num = arg_num;
+    return *this;
+  }
+};
+
+// Simple stream insertion operator
+std::ostream & operator<<(std::ostream &os, const my_class &my_obj) {
+  os << "my_class[ " << my_obj.get_num() << " ]";
+  return os;
+}
+
+// Simple equality predicate operator
+bool operator==(const my_class &my_obj_a, const my_class &my_obj_b) {
+  return ( my_obj_a.get_num() == my_obj_b.get_num() );
+}
+
+BOOST_AUTO_TEST_CASE(my_test) {
+  const my_class correct_answer( 5 );
+
+  // These two work as expected
+  BOOST_CHECK_EQUAL( my_class( boost::none ).set_num( 5 ),   correct_answer                       );
+  BOOST_CHECK_EQUAL( correct_answer,                         my_class( boost::none ).set_num( 5 ) );
+
+  // These two fail, evaluating the non-trivial side as "my_class[ -- ]"
+  BOOST_TEST       ( my_class( boost::none ).set_num( 5 ) == correct_answer                       );
+  BOOST_TEST       ( correct_answer                       == my_class( boost::none ).set_num( 5 ) );
+}
 
 // EOF
