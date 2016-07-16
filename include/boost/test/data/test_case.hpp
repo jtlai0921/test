@@ -123,18 +123,21 @@ public:
 #ifndef BOOST_NO_CXX11_RVALUE_REFERENCES
     test_case_gen( const_string tc_name, const_string tc_file, std::size_t tc_line, DataSet&& ds )
     : m_tc_name( ut_detail::normalize_test_case_name( tc_name ) )
+    , m_tc_line( tc_line )
     , m_tc_index( 0 )
     {
         data::for_each_sample( std::forward<DataSet>( ds ), *this );
     }
     test_case_gen( test_case_gen&& gen )
     : m_tc_name( gen.m_tc_name )
+    , m_tc_line( gen.m_tc_line )
     , m_tc_index( gen.m_tc_index )
     , m_test_cases( std::move(gen.m_test_cases) )
     {}
 #else
     test_case_gen( const_string tc_name, const_string tc_file, std::size_t tc_line, DataSet const& ds )
     : m_tc_name( ut_detail::normalize_test_case_name( tc_name ) )
+    , m_tc_line( tc_line )
     , m_tc_index( 0 )
     {
         data::for_each_sample( ds, *this );
