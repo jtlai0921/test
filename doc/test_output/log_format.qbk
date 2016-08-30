@@ -6,6 +6,15 @@
  /]
 
 [section Log formats]
+
+The __UTF__ supports several log formats:
+
+* HRF: human readable format
+* XML: an machine interpretable log format
+* JUNIT: a standardized log format understandable by tools like Continuous Builds
+
+
+
 [section:log_human_readable_format Human readable log format]
 
 The human readable log format is designed to closely match an errors description produced by the Microsoft family
