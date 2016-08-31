@@ -13,6 +13,8 @@ The __UTF__ supports several log formats:
 * XML: an machine interpretable log format
 * JUNIT: a standardized log format understandable by tools like Continuous Builds
 
+[h4 Design]
+
 
 
 [section:log_human_readable_format Human readable log format]

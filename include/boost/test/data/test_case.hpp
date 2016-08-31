@@ -153,7 +153,6 @@ public:
     }
 
 #if !defined(BOOST_TEST_DATASET_VARIADIC)
-  /// make this variadic
 #define TC_MAKE(z,arity,_)                                                              \
     template<BOOST_PP_ENUM_PARAMS(arity, typename Arg)>                                 \
     void    operator()( BOOST_PP_ENUM_BINARY_PARAMS(arity, Arg, const& arg) ) const     \

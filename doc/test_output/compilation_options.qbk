@@ -1,5 +1,5 @@
 [/
- / Copyright (c) 2003 Boost.Test contributors 
+ / Copyright (c) 2003 Boost.Test contributors
  /
  / Distributed under the Boost Software License, Version 1.0. (See accompanying
  / file LICENSE_1_0.txt or copy at http://www.boost.org/LICENSE_1_0.txt)
@@ -8,8 +8,8 @@
 [section:log_compil_time_configuration Compile time configuration]
 
 While many test log configuration tasks can be performed at runtime using predefined framework parameters, the
-__UTF__ provides a compile time interface as well. The interface gives you full power over what, where and how to 
-log. The interface is provided by singleton class ``boost::unit_test::unit_test_log_t`` and is
+__UTF__ provides a compile time interface as well. The interface gives you full power over what, where and how to
+log. The interface is provided by singleton class [classref boost::unit_test::unit_test_log_t] and is
 accessible through local file scope reference to single instance of this class
 
 ``boost::unit_test::unit_test_log``
