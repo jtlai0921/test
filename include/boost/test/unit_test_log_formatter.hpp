@@ -97,14 +97,13 @@ struct BOOST_TEST_DECL log_checkpoint_data
 /// a reference to standard stream as a first argument. This is where final messages needs to be directed
 /// to. Also you are given all the information necessary to produce a message.
 ///
-/// @par [Since Boost 1.62]
+/// @par Since Boost 1.62:
 /// - Each formatter may indicate the default output stream. This is convenient for instance for streams intended
 ///   for automated processing that indicate a file. See @c get_default_stream_description for more details.
 /// - Each formatter may manage its own log level through the getter/setter @c get_log_level and @c set_log_level .
 ///
 /// @see
 /// - boost::unit_test::test_observer for an indication of the calls of the test observer interface
-/// - boost::unit_test::unit_test_log_t for
 class BOOST_TEST_DECL unit_test_log_formatter {
 public:
     /// Types of log entries (messages written into a log)
@@ -186,7 +185,7 @@ public:
     /// The framwork calls this function when an uncaught exception it detected.
     /// This call is followed by context information:
     /// - one call to @c entry_context_start,
-    /// - 0 to many calls to @c log_entry_context
+    /// - as many calls to @c log_entry_context as there are context entries
     /// - one call to @c entry_context_finish
     ///
     /// The logging of the exception information is finilized by a call to @c log_exception_finish.
@@ -275,6 +274,8 @@ public:
 
     // @name Log level management
 
+    /// Sets the log level of the logger/formatter
+    ///
     /// Some loggers need to manage the log level by their own. This
     /// member function let the implementation decide of that.
     /// @par Since Boost 1.62
@@ -283,7 +284,7 @@ public:
         m_log_level = new_log_level;
     }
 
-
+    /// Returns the log level of the logger/formatter
     /// @par Since Boost 1.62
     virtual log_level   get_log_level() const
     {
@@ -297,7 +298,8 @@ public:
     /// Returns a default stream for this logger.
     ///
     /// The returned string describes the stream as if it was passed from
-    /// the command line --log_sink parameter.
+    /// the command line @c "--log_sink" parameter. With that regards, @b stdout and @b stderr
+    /// have special meaning indicating the standard output or error stream respectively.
     ///
     /// @par Since Boost 1.62
     virtual std::string  get_default_stream_description() const
