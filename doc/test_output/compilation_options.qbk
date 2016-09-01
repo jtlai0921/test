@@ -67,6 +67,15 @@ format selection.
 
 [#ref_log_formatter_api][section:custom_log_formatter Custom log format support]
 
+[tip More details about the class implementing the formatting of the logs can be found in the following reference sections.
+
+* [classref boost::unit_test::unit_test_log_formatter] defines the interface for all loggers. Built-in
+  [link boost_test.test_output.log_formats.log_human_readable_format HRF], [link boost_test.test_output.log_formats.log_xml_format XML]
+  and [link boost_test.test_output.log_formats.log_junit_format JUNIT] loggers derive from this class
+* [classref boost::unit_test::test_results] defines the information carried by the tests to provide reports and logs.
+]
+
+
 [warning Check what to do on this one]
 
 [endsect] [/section:custom_log_formatter]

@@ -10,36 +10,27 @@
 The output produced by a test module is one of the major assets the __UTF__ brings to users. In comparison with any
 kind of manual/assert based solution the __UTF__ provide following services:
 
-[/TOFIX into proper list]
-[itemized_list
-[All test errors are reported uniformly[br]
+[variablelist
+[[All test errors are reported uniformly][
   The test execution monitor along with standardized output from all included
   [link boost_test.testing_tools testing tools] provides uniform reporting for all errors
-  including fatal errors, like memory assess violation and uncaught exceptions.]
-[Detailed information on the source of an error[br]
+  including fatal errors, like memory assess violation and uncaught exceptions.]]
+[[Detailed information on the source of an error][
   The __UTF__ test tool's based assertion provides as much information as possible about cause of error,
-  usually allowing you to deduce what is wrong without entering the debugger or core analysis.]
-[Separation of the test errors description (test log) from the results report summary (test results report)[br]
+  usually allowing you to deduce what is wrong without entering the debugger or core analysis.]]
+[[Separation of the test errors description (test log) from the results report summary (test results report)][
   The information produced during test execution, including all error, warning and info messages from the test
   tools, executed test units notification constitute the test log. By default all entries in the test log are
   directed to the standard output. Once testing is completed the __UTF__ may produce a summary test report with
-  different levels of detail. The test report is by default directed to the standard error output.]
-[Flexibility in what is shown in the output[br]
+  different levels of detail. The test report is by default directed to the standard error output.]]
+[[Flexibility in what is shown in the output][
 The __UTF__ provides the ability to configure what is shown in both the test log and the test report. The
   configuration is supported both at runtime, during test module invocation and at compile time from within a
-  test module.]
-[Flexibility in how output is formatted[br]
-The __UTF__ provides the ability to configure the format of the test module output. At the moment only 2 formats
+  test module.]]
+[[Flexibility in how output is formatted][
+The __UTF__ provides the ability to configure the format of the test module output. At the moment only 3 formats
   are supported by the __UTF__ itself, the well defined public interface allows you to customize an output for
-  your purposes almost any way you want.]
-]
-
-[tip More details about the class implementing the formatting of the logs can be found in the following reference sections.
-
-* [classref boost::unit_test::unit_test_log_formatter] defines the interface for all loggers. Built-in
-  [link boost_test.test_output.log_formats.log_human_readable_format HRF], [link boost_test.test_output.log_formats.log_xml_format XML]
-  and [link boost_test.test_output.log_formats.log_junit_format JUNIT] loggers derive from this class
-* [classref boost::unit_test::test_results] defines the information carried by the tests to provide reports and logs.
+  your purposes almost any way you want.]]
 ]
 
 [section Test log output]
@@ -143,52 +134,7 @@ The test log output format can be selected using either parameter
 
 [endsect] [/section:log_runtime_config]
 
-[/ -------------------------------------------------------------------------------------------------- ]
-[section:testing_tool_output_disable Disabling automatic printing for specific types]
-
-Most of the [link boost_test.testing_tools testing tools] print values of their
-arguments to the output stream in some form of log statement. If arguments type does not support
-``
-  operator<<(std::ostream&, ArgumentType const&);
-``
-interface you will get a compilation error. You can either implement above interface or prohibit
-the [link boost_test.testing_tools testing tools] from logging argument values for
-specified type. To do so, use following statement on file level before first test case that
-includes statement failing to compile:
-
-``
-  BOOST_TEST_DONT_PRINT_LOG_VALUE(ArgumentType)
-``
-
-[bt_example example32..BOOST_TEST_DONT_PRINT_LOG_VALUE usage..run-fail]
-
-[endsect] [/section:testing_tool_output_disable]
-
-[/ -------------------------------------------------------------------------------------------------- ]
-[section:test_output_macro_message Custom messages]
-The macro __BOOST_TEST_MESSAGE__ is intended to be used for the purpose of injecting an additional message into the
-__UTF__ test log. These messages are not intended to indicate any error or warning conditions, but rather as
-information/status notifications. The macro signature is as follows:
-
-  __BOOST_TEST_MESSAGE__(test_message);
-
-The test_message argument can be as simple as C string literal or any custom expression that you can produce with in a
-manner similar to standard `std::iostream` operation.
-
-[important Messages generated by this tool do not appear in test log output with default value of the active log level
-   threshold. For these messages to appear the active log level threshold has to be set to a value below or equal
-   to "message".
-]
-
-[bt_example example21..__BOOST_TEST_MESSAGE__ usage..run]
-
-[endsect] [/section:test_output_macro_message]
-
-[/ -------------------------------------------------------------------------------------------------- ]
-
-[include checkpoints.qbk]
-[include contexts.qbk]
-[include logging_floating_point.qbk]
+[include test_tools_support.qbk]
 [include log_format.qbk]
 [include report_format.qbk]
 [include compilation_options.qbk]
