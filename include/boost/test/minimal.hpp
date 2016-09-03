@@ -93,7 +93,7 @@ report_error( const char* msg, const char* file, int line, const_string func_nam
     std::cerr << std::endl;
 }
 
-inline void
+BOOST_NORETURN inline void
 report_critical_error( const char* msg, const char* file, int line, const_string func_name, bool is_msg = false )
 {
     report_error( msg, file, line, func_name, is_msg );

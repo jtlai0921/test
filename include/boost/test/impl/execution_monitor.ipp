@@ -235,7 +235,7 @@ extract( boost::exception const* ex )
 
 //____________________________________________________________________________//
 
-static void
+BOOST_NORETURN static void
 report_error( execution_exception::error_code ec, boost::exception const* be, char const* format, va_list* args )
 {
     static const int REPORT_ERROR_BUFFER_SIZE = 4096;
@@ -253,7 +253,7 @@ report_error( execution_exception::error_code ec, boost::exception const* be, ch
 
 //____________________________________________________________________________//
 
-static void
+BOOST_NORETURN static void
 report_error( execution_exception::error_code ec, boost::exception const* be, char const* format, ... )
 {
     va_list args;
@@ -266,7 +266,7 @@ report_error( execution_exception::error_code ec, boost::exception const* be, ch
 
 //____________________________________________________________________________//
 
-static void
+BOOST_NORETURN static void
 report_error( execution_exception::error_code ec, char const* format, ... )
 {
     va_list args;
@@ -813,7 +813,7 @@ signal_handler::~signal_handler()
 
 extern "C" {
 
-static void boost_execution_monitor_jumping_signal_handler( int sig, siginfo_t* info, void* context )
+BOOST_NORETURN static void boost_execution_monitor_jumping_signal_handler( int sig, siginfo_t* info, void* context )
 {
     signal_handler::sys_sig()( info, context );
 
